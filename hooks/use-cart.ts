@@ -1,7 +1,9 @@
-import { Product } from '@/types'
-import toast from 'react-hot-toast'
 import { create } from 'zustand'
+import { toast } from 'react-hot-toast'
 import { persist, createJSONStorage } from 'zustand/middleware'
+
+import { Product } from '@/types'
+import { AlertTriangle } from 'lucide-react'
 
 interface CartStore {
     items: Product[]
@@ -27,7 +29,7 @@ const useCart = create(
             },
             removeItem: (id: string) => {
                 set({ items: [...get().items.filter((item) => item.id !== id)] })
-                toast.success('Item removed from the cart.')
+                toast.success('Item removed from cart.')
             },
             removeAll: () => set({ items: [] }),
         }),
